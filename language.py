@@ -31,9 +31,10 @@ Parameters: 2D list of strs
 Returns: int
 '''
 def getCorpusLength(corpus):
-    
-    return
-
+    corpuslength = 0
+    for word in range(len(corpus)):
+        corpuslength = corpuslength + len(corpus[word])
+    return corpuslength
 
 '''
 buildVocabulary(corpus)
@@ -295,6 +296,7 @@ if __name__ == "__main__":
     print("\n" + "#"*15 + " WEEK 1 OUTPUT " + "#" * 15 + "\n")
     test.runWeek1()
     test.testLoadBook()
+    test.testGetCorpusLength()
 
     ## Uncomment these for Week 2 ##
 """
