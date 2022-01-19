@@ -17,9 +17,13 @@ Parameters: str
 Returns: 2D list of strs
 '''
 def loadBook(filename):
-    return
-
-
+    book = open(filename,"r")
+    corpus_text = []
+    for text in book:
+        line = text.split()
+        if line != []:
+            corpus_text.append(line)
+    return corpus_text
 '''
 getCorpusLength(corpus)
 #2 [Check6-1]
@@ -27,8 +31,10 @@ Parameters: 2D list of strs
 Returns: int
 '''
 def getCorpusLength(corpus):
-    return
-
+    corpuslength = 0
+    for word in range(len(corpus)):
+        corpuslength = corpuslength + len(corpus[word])
+    return corpuslength
 
 '''
 buildVocabulary(corpus)
@@ -37,8 +43,12 @@ Parameters: 2D list of strs
 Returns: list of strs
 '''
 def buildVocabulary(corpus):
-    return
-
+    uniqwords = []
+    for list in corpus:
+        for eachword in list:
+            if eachword not in uniqwords:
+                uniqwords.append(eachword)
+    return uniqwords
 
 '''
 countUnigrams(corpus)
@@ -47,7 +57,13 @@ Parameters: 2D list of strs
 Returns: dict mapping strs to ints
 '''
 def countUnigrams(corpus):
-    return
+    unigramcounts = {}
+    for list in corpus:
+        for eachword in list:
+            if eachword not in unigramcounts:
+                unigramcounts[eachword] = 0
+            unigramcounts[eachword] += 1      
+    return unigramcounts
 
 
 '''
@@ -289,6 +305,10 @@ if __name__ == "__main__":
     test.week1Tests()
     print("\n" + "#"*15 + " WEEK 1 OUTPUT " + "#" * 15 + "\n")
     test.runWeek1()
+    test.testLoadBook()
+    test.testGetCorpusLength()
+    test.testBuildVocabulary()
+    test.testCountUnigrams()
 
     ## Uncomment these for Week 2 ##
 """
