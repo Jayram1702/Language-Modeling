@@ -57,7 +57,13 @@ Parameters: 2D list of strs
 Returns: dict mapping strs to ints
 '''
 def countUnigrams(corpus):
-    return
+    unigramcounts = {}
+    for list in corpus:
+        for eachword in list:
+            if eachword not in unigramcounts:
+                unigramcounts[eachword] = 0
+            unigramcounts[eachword] += 1      
+    return unigramcounts
 
 
 '''
@@ -302,6 +308,7 @@ if __name__ == "__main__":
     test.testLoadBook()
     test.testGetCorpusLength()
     test.testBuildVocabulary()
+    test.testCountUnigrams()
 
     ## Uncomment these for Week 2 ##
 """
