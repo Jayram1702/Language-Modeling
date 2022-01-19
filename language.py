@@ -17,9 +17,13 @@ Parameters: str
 Returns: 2D list of strs
 '''
 def loadBook(filename):
-    return
-
-
+    book = open(filename,"r")
+    corpus_text = []
+    for text in book:
+        line = text.split()
+        if line != []:
+            corpus_text.append(line)
+    return corpus_text
 '''
 getCorpusLength(corpus)
 #2 [Check6-1]
@@ -27,8 +31,10 @@ Parameters: 2D list of strs
 Returns: int
 '''
 def getCorpusLength(corpus):
-    return
-
+    corpuslength = 0
+    for word in range(len(corpus)):
+        corpuslength = corpuslength + len(corpus[word])
+    return corpuslength
 
 '''
 buildVocabulary(corpus)
@@ -289,6 +295,8 @@ if __name__ == "__main__":
     test.week1Tests()
     print("\n" + "#"*15 + " WEEK 1 OUTPUT " + "#" * 15 + "\n")
     test.runWeek1()
+    test.testLoadBook()
+    test.testGetCorpusLength()
 
     ## Uncomment these for Week 2 ##
 """
