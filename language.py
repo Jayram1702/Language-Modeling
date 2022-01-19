@@ -43,8 +43,12 @@ Parameters: 2D list of strs
 Returns: list of strs
 '''
 def buildVocabulary(corpus):
-    return
-
+    uniqwords = []
+    for list in corpus:
+        for eachword in list:
+            if eachword not in uniqwords:
+                uniqwords.append(eachword)
+    return uniqwords
 
 '''
 countUnigrams(corpus)
@@ -297,6 +301,7 @@ if __name__ == "__main__":
     test.runWeek1()
     test.testLoadBook()
     test.testGetCorpusLength()
+    test.testBuildVocabulary()
 
     ## Uncomment these for Week 2 ##
 """
