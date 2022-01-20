@@ -123,7 +123,11 @@ Parameters: list of strs
 Returns: list of floats
 '''
 def buildUniformProbs(unigrams):
-    return
+    unilen = len(unigrams)
+    probabilitylst = []
+    for word in unigrams:
+        word= probabilitylst.append(1/unilen)
+    return probabilitylst
 
 
 '''
@@ -323,21 +327,22 @@ if __name__ == "__main__":
     # test.week1Tests()
     # print("\n" + "#"*15 + " WEEK 1 OUTPUT " + "#" * 15 + "\n")
     # test.runWeek1()
-    test.testLoadBook()
-    test.testGetCorpusLength()
-    test.testBuildVocabulary()
-    test.testCountUnigrams()
-    test.testGetStartWords()
-    test.testCountStartWords()
-    test.testCountBigrams()
+    # test.testLoadBook()
+    # test.testGetCorpusLength()
+    # test.testBuildVocabulary()
+    # test.testCountUnigrams()
+    # test.testGetStartWords()
+    # test.testCountStartWords()
+    # test.testCountBigrams()
 
     ## Uncomment these for Week 2 ##
-"""
+
     print("\n" + "#"*15 + " WEEK 2 TESTS " +  "#" * 16 + "\n")
     test.week2Tests()
     print("\n" + "#"*15 + " WEEK 2 OUTPUT " + "#" * 15 + "\n")
     test.runWeek2()
-"""
+    test.testBuildUniformProbs()
+
 
     ## Uncomment these for Week 3 ##
 """
