@@ -137,8 +137,13 @@ Parameters: list of strs ; dict mapping strs to ints ; int
 Returns: list of floats
 '''
 def buildUnigramProbs(unigrams, unigramCounts, totalCount):
-    return
-
+    unigrmprblst = []
+    for index in range(len(unigrams)):
+        for wordval in unigramCounts:
+            if unigrams[index] == wordval:
+                unigrmprblst.append(unigramCounts[wordval]/totalCount)
+    print(unigrmprblst)
+    return unigrmprblst
 
 '''
 buildBigramProbs(unigramCounts, bigramCounts)
@@ -342,6 +347,7 @@ if __name__ == "__main__":
     print("\n" + "#"*15 + " WEEK 2 OUTPUT " + "#" * 15 + "\n")
     test.runWeek2()
     test.testBuildUniformProbs()
+    test.testBuildUnigramProbs()
 
 
     ## Uncomment these for Week 3 ##
