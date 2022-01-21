@@ -142,7 +142,6 @@ def buildUnigramProbs(unigrams, unigramCounts, totalCount):
         for wordval in unigramCounts:
             if unigrams[index] == wordval:
                 unigrmprblst.append(unigramCounts[wordval]/totalCount)
-    print(unigrmprblst)
     return unigrmprblst
 
 '''
@@ -152,8 +151,19 @@ Parameters: dict mapping strs to ints ; dict mapping strs to (dicts mapping strs
 Returns: dict mapping strs to (dicts mapping strs to (lists of values))
 '''
 def buildBigramProbs(unigramCounts, bigramCounts):
-    return
-
+    newdic = {}
+    for word in bigramCounts:
+        wordcnt = unigramCounts[word]
+        nxtword = []
+        prob = []
+        for keyword in bigramCounts[word]:
+            nxtword.append(keyword)
+            prob.append(bigramCounts[word][keyword]/wordcnt)
+        tempdic ={}
+        tempdic["words"] = nxtword
+        tempdic["probs"] = prob
+        newdic[word]=tempdic
+    return newdic
 
 '''
 getTopWords(count, words, probs, ignoreList)
@@ -348,6 +358,7 @@ if __name__ == "__main__":
     test.runWeek2()
     test.testBuildUniformProbs()
     test.testBuildUnigramProbs()
+    test.testBuildBigramProbs()
 
 
     ## Uncomment these for Week 3 ##
