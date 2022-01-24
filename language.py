@@ -232,7 +232,7 @@ def graphTop50Words(corpus):
     import matplotlib.pyplot as plt
     word = buildVocabulary(corpus)
     prob = countUnigrams(corpus)
-    probab =  buildUnigramProbs(word, prob, getCorpusLength(corpus))
+    probab =  buildUnigramProbs(word, prob, len(corpus))
     topwords = getTopWords(50, word, probab, ignore)
     barPlot(topwords, "TOP 50 Words")
     return 
