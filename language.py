@@ -234,7 +234,7 @@ def graphTop50Words(corpus):
     prob = countUnigrams(corpus)
     probab =  buildUnigramProbs(word, prob, getCorpusLength(corpus))
     topwords = getTopWords(50, word, probab, ignore)
-    # barPlot(topwords, "TOP 50 Words")
+    barPlot(topwords, "TOP 50 Words")
     return 
 
 
@@ -264,7 +264,7 @@ def graphTopNextWords(corpus, word):
     prb = countBigrams(corpus)
     prob = buildBigramProbs(wrd,prb)
     topnxtwrds = getTopWords(10,prob[word]["words"],prob[word]["probs"],ignore)
-    # barPlot(topnxtwrds,"TOP NEXT WORDS")
+    barPlot(topnxtwrds,"TOP NEXT WORDS")
     return
 
 
@@ -316,6 +316,8 @@ Parameters: 2D list of strs ; str ; 2D list of strs ; str ; int ; str
 Returns: None
 '''
 def graphTopWordsSideBySide(corpus1, name1, corpus2, name2, numWords, title):
+    dic = setupChartData(corpus1, corpus2, numWords)
+    sideBySideBarPlots(dic["topWords"], dic["corpus1Probs"], dic["corpus2Probs"], name1, name2, title)
     return
 
 
@@ -326,6 +328,8 @@ Parameters: 2D list of strs ; 2D list of strs ; int ; str
 Returns: None
 '''
 def graphTopWordsInScatterplot(corpus1, corpus2, numWords, title):
+    dic = setupChartData(corpus1, corpus2, numWords)
+    scatterPlot(dic["corpus1Probs"], dic["corpus2Probs"], dic["topWords"], title)
     return
 
 
@@ -433,5 +437,5 @@ if __name__ == "__main__":
     ## Uncomment these for Week 3 ##
 
     print("\n" + "#"*15 + " WEEK 3 OUTPUT " + "#" * 15 + "\n")
-    # test.runWeek3()
+    test.runWeek3()
     test.testSetupChartData()
