@@ -234,7 +234,7 @@ def graphTop50Words(corpus):
     prob = countUnigrams(corpus)
     probab =  buildUnigramProbs(word, prob, getCorpusLength(corpus))
     topwords = getTopWords(50, word, probab, ignore)
-    barPlot(topwords, "TOP 50 Words")
+    # barPlot(topwords, "TOP 50 Words")
     return 
 
 
@@ -250,7 +250,7 @@ def graphTopStartWords(corpus):
     prob =  buildUnigramProbs(strtwrd, strtprob, getCorpusLength(corpus))
     topstrtwords = getTopWords(50, strtwrd, prob, ignore)
     # print(topstrtwords)
-    barPlot(topstrtwords, "TOP 50 Start Words")
+    # barPlot(topstrtwords, "TOP 50 Start Words")
     return
 
 '''
@@ -264,7 +264,7 @@ def graphTopNextWords(corpus, word):
     prb = countBigrams(corpus)
     prob = buildBigramProbs(wrd,prb)
     topnxtwrds = getTopWords(10,prob[word]["words"],prob[word]["probs"],ignore)
-    barPlot(topnxtwrds,"TOP NEXT WORDS")
+    # barPlot(topnxtwrds,"TOP NEXT WORDS")
     return
 
 
@@ -275,8 +275,38 @@ Parameters: 2D list of strs ; 2D list of strs ; int
 Returns: dict mapping strs to (lists of values)
 '''
 def setupChartData(corpus1, corpus2, topWordCount):
-    
-    return
+    word = buildVocabulary(corpus1)
+    prob = countUnigrams(corpus1)
+    probab =  buildUnigramProbs(word, prob, getCorpusLength(corpus1))
+    topwordscorp1 = getTopWords(topWordCount, word, probab, ignore)
+    corp1lst = [] #1
+    for corp1word in topwordscorp1:
+        corp1lst.append(corp1word)
+    word1 = buildVocabulary(corpus2)
+    prob1 = countUnigrams(corpus2)
+    probab1 =  buildUnigramProbs(word1, prob1, getCorpusLength(corpus2))
+    topwordscorp2 = getTopWords(topWordCount, word1, probab1, ignore)
+    for corp2word in topwordscorp2:
+        if corp2word not in corp1lst:
+            corp1lst.append(corp2word)
+    problst1 = []
+    problst2 = []
+    for keyword in corp1lst:
+        if keyword in word:
+            ind = word.index(keyword)
+            problst1.append(probab[ind])
+        else:
+            problst1.append(0)
+        if keyword in word1:
+            ind1 = word1.index(keyword)
+            problst2.append(probab1[ind1])
+        else:
+            problst2.append(0)
+    dic ={}
+    dic["topWords"] = corp1lst
+    dic["corpus1Probs"] = problst1
+    dic["corpus2Probs"] = problst2
+    return dic
 
 
 '''
@@ -403,4 +433,5 @@ if __name__ == "__main__":
     ## Uncomment these for Week 3 ##
 
     print("\n" + "#"*15 + " WEEK 3 OUTPUT " + "#" * 15 + "\n")
-    test.runWeek3()
+    # test.runWeek3()
+    test.testSetupChartData()
